@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:icook_explode/icook_explode.dart';
 
@@ -11,9 +13,13 @@ void main() {
 
   test('try http', () async {
     final calculator = IcookExplode();
-
     var response = await calculator.tryHttp();
-
     expect(response.isEmpty, false);
+  });
+
+  test('Load a file', () async {
+    final file = File('test/sample_data/http_sample.html');
+    final fileContent = await file.readAsString();
+    expect(fileContent.isEmpty, false);
   });
 }
