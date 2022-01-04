@@ -22,4 +22,13 @@ void main() {
     final fileContent = await file.readAsString();
     expect(fileContent.isEmpty, false);
   });
+
+  test('Parse HTML', () async {
+    final file = File('test/sample_data/http_sample.html');
+    final fileContent = await file.readAsString();
+
+    final calculator = IcookExplode();
+    String? result = calculator.tryParser(fileContent);
+    expect(result?.isEmpty, false);
+  });
 }
