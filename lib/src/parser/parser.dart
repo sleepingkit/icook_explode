@@ -19,8 +19,8 @@ class IcookExplodeParser {
         ? null
         : recipesTotalCountNode.first.text?.trim();
 
-// 食譜簡介
-// e.g: description
+    /// 食譜簡介
+    /// e.g: description
     final descriptionElement = document
         .getElementsByClassName("styles-module__searchKeywordContent___hdMIz");
     String? description = descriptionElement.isEmpty
@@ -31,11 +31,11 @@ class IcookExplodeParser {
 
     /// 食譜常見料理
     /// e.g: [
-//         "羅宋牛肉湯",
-//         "蔬菜湯",
-//         "牛肉湯",
-//         "番茄湯"
-//     ]
+    ///         "羅宋牛肉湯",
+    ///         "蔬菜湯",
+    ///         "牛肉湯",
+    ///         "番茄湯"
+    ///     ]
     final suggestionsElement = document.querySelectorAll(
         "#o-wrapper > div:nth-child(6) > div.row.row--flex > main > header > section:nth-child(5) > ul > li > a");
     final List<String>? suggestions = suggestionsElement
@@ -44,17 +44,17 @@ class IcookExplodeParser {
         .whereType<String>()
         .toList();
 
-//
+    /// 食譜
     final List<Node>? recipesNode =
         document.getElementsByClassName("browse-recipe-item");
 
     final List<Recipe>? recipes = recipesNode?.map((recipeNode) {
-// 找不到方法直接取得當前的Element, 透過子節點再用parent間接
+      /// 找不到方法直接取得當前的Element, 透過子節點再用parent間接
       final Element? currentElement = recipeNode.hasChildNodes()
           ? recipeNode.childNodes.first.parent
           : null;
 
-// 內頁路徑, e.g: /recipes/397794
+      /// 內頁路徑, e.g: /recipes/397794
       final String? detailPath =
           currentElement?.querySelector("a")?.getAttribute("href");
 
@@ -63,30 +63,33 @@ class IcookExplodeParser {
           ?.querySelector("a > article > div.browse-recipe-cover > img")
           ?.getAttribute("data-src");
 
-// e.g: 羅宋湯
+      /// e.g: 羅宋湯
       final String? name = currentElement
           ?.querySelector("a > article > div.browse-recipe-content > div > h2")
           ?.text
           ?.trim();
-// e.g: 牛肉羅宋湯，一鍋到底的不正宗口味，哈哈！沒買到月桂葉，但是味道也是很美味。
+
+      /// e.g: 牛肉羅宋湯，一鍋到底的不正宗口味，哈哈！沒買到月桂葉，但是味道也是很美味。
       final String? description = currentElement
           ?.querySelector(
               "a > article > div.browse-recipe-content > div > blockquote")
           ?.text
           ?.trim();
-// 成份, e.g: 食材：牛肋條、牛番茄、鹽巴、紅蘿蔔、白胡椒粉、洋蔥、黑胡椒、義大利香料粉、番茄醬
+
+      /// 成份, e.g: 食材：牛肋條、牛番茄、鹽巴、紅蘿蔔、白胡椒粉、洋蔥、黑胡椒、義大利香料粉、番茄醬
       final String? ingredient = currentElement
           ?.querySelector("a > article > div.browse-recipe-content > div > p")
           ?.text
           ?.trim();
-// 烹飪時間, e.g: 45 分
+
+      /// 烹飪時間, e.g: 45 分
       String? cookingTime = currentElement
           ?.querySelector(
               "a > article > div.browse-recipe-content > ul.browse-recipe-meta > li.browse-recipe-meta-item:nth-child(1)")
           ?.text
           ?.trim();
 
-// 處理沒有"烹飪時間"的情況
+      /// 處理沒有"烹飪時間"的情況
       if (cookingTime != null) {
         cookingTime = cookingTime.contains("分") ? cookingTime : null;
       }
@@ -108,5 +111,20 @@ class IcookExplodeParser {
       suggestions: suggestions,
       recipes: recipes,
     );
+  }
+
+  String? detailContentParser(String rawHtml) {
+    HtmlDocument document = parseHtmlDocument(rawHtml);
+
+    /// 食譜名稱
+    /// e.g: 羅宋湯
+    final nameElement = document.getElementById("recipe-name");
+    String? name = nameElement?.text?.replaceAll("\n", " ").trim();
+
+    /// 食譜簡介
+    /// e.g: description
+    // final descriptionElement = document.getElementsByClassName("description");
+    // String? name = nameElement?.text?.replaceAll("\n", " ").trim();
+    return name;
   }
 }

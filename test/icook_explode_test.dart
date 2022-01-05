@@ -51,5 +51,14 @@ void main() {
         ),
       );
     });
+
+    test('Parse Detail content HTML', () async {
+      final file = File('test/sample_data/detail_sample.html');
+      final fileContent = await file.readAsString();
+
+      final parser = IcookExplodeParser();
+      String? result = parser.detailContentParser(fileContent);
+      return result;
+    });
   });
 }
