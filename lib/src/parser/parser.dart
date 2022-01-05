@@ -2,6 +2,8 @@ import 'package:icook_explode/src/model/recipes_model.dart';
 import 'package:universal_html/html.dart';
 import 'package:universal_html/parsing.dart';
 
+import '../extension/string_ex.dart';
+
 class IcookExplodeParser {
   RecipesModel searchContentParser(String rawHtml) {
     HtmlDocument document = parseHtmlDocument(rawHtml);
@@ -118,13 +120,20 @@ class IcookExplodeParser {
 
     /// 食譜名稱
     /// e.g: 羅宋湯
-    final nameElement = document.getElementById("recipe-name");
-    String? name = nameElement?.text?.replaceAll("\n", " ").trim();
+    String? name =
+        document.getElementById("recipe-name")?.text?.removeNewLines()?.trim();
 
     /// 食譜簡介
-    /// e.g: description
-    // final descriptionElement = document.getElementsByClassName("description");
-    // String? name = nameElement?.text?.replaceAll("\n", " ").trim();
+    /// e.g: 牛肉羅宋湯，一鍋到底的不正宗口味，哈哈！沒買到月桂葉，但是味道也是很美味。
+    final String? description = document
+        .querySelector(
+            "div.recipe-details > div.recipe-details-header.recipe-details-block > section > p")
+        ?.text
+        ?.removeNewLines()
+        ?.trim();
+
+
+
     return name;
   }
 }
