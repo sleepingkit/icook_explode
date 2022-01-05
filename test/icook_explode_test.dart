@@ -19,14 +19,14 @@ void main() {
   });
 
   test('Load a file', () async {
-    final file = File('test/sample_data/http_sample.html');
+    final file = File('test/sample_data/search_sample.html');
     final fileContent = await file.readAsString();
     expect(fileContent.isEmpty, false);
   });
 
   group('Parser', () {
     test('Parse Search content HTML', () async {
-      final file = File('test/sample_data/http_sample.html');
+      final file = File('test/sample_data/search_sample.html');
       final fileContent = await file.readAsString();
 
       final parser = IcookExplodeParser();
