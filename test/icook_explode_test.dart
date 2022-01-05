@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:icook_explode/icook_explode.dart';
+import 'package:icook_explode/src/model/recipes_model.dart';
 
 void main() {
   test('adds one to input values', () {
@@ -28,7 +29,7 @@ void main() {
     final fileContent = await file.readAsString();
 
     final calculator = IcookExplode();
-    String? result = calculator.tryParser(fileContent);
-    expect(result?.isEmpty, false);
+    RecipesModel result = calculator.tryParser(fileContent);
+    expect(result.name, "羅宋湯");
   });
 }
