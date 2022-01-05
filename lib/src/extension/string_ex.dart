@@ -1,5 +1,8 @@
-extension StringEx on String {
-  String? removeNewLines(){
-    return replaceAll("\n", " ");
+extension StringEx on String? {
+  String? removeNewLinesAndWhitespaces() {
+    String? text = this;
+    text = text?.replaceAll("\n", "");
+    text = text?.replaceAll(" ", "");
+    return text;
   }
 }

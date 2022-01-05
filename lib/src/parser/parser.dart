@@ -11,7 +11,9 @@ class IcookExplodeParser {
     /// 食譜名稱
     /// e.g: 羅宋湯
     final nameNode = document.getElementsByClassName("browse-title-name");
-    String? name = nameNode.isEmpty ? null : nameNode.first.text?.trim();
+    String? name = nameNode.isEmpty
+        ? null
+        : nameNode.first.text?.removeNewLinesAndWhitespaces();
 
     /// 食譜總數 (只供參考)
     /// 234 道食譜
@@ -19,7 +21,7 @@ class IcookExplodeParser {
         document.getElementsByClassName("browse-title-count");
     String? recipesTotalCount = recipesTotalCountNode.isEmpty
         ? null
-        : recipesTotalCountNode.first.text?.trim();
+        : recipesTotalCountNode.first.text?.removeNewLinesAndWhitespaces();
 
     /// 食譜簡介
     /// e.g: description
@@ -29,7 +31,8 @@ class IcookExplodeParser {
         ? null
         : descriptionElement.first.nodes.isEmpty
             ? null
-            : descriptionElement.first.nodes.first.text?.trim();
+            : descriptionElement.first.nodes.first.text
+                ?.removeNewLinesAndWhitespaces();
 
     /// 食譜常見料理
     /// e.g: [
@@ -41,7 +44,7 @@ class IcookExplodeParser {
     final suggestionsElement = document.querySelectorAll(
         "#o-wrapper > div:nth-child(6) > div.row.row--flex > main > header > section:nth-child(5) > ul > li > a");
     final List<String>? suggestions = suggestionsElement
-        .map((Node e) => e.text?.trim())
+        .map((Node e) => e.text?.removeNewLinesAndWhitespaces())
         .toList()
         .whereType<String>()
         .toList();
@@ -69,27 +72,27 @@ class IcookExplodeParser {
       final String? name = currentElement
           ?.querySelector("a > article > div.browse-recipe-content > div > h2")
           ?.text
-          ?.trim();
+          ?.removeNewLinesAndWhitespaces();
 
       /// e.g: 牛肉羅宋湯，一鍋到底的不正宗口味，哈哈！沒買到月桂葉，但是味道也是很美味。
       final String? description = currentElement
           ?.querySelector(
               "a > article > div.browse-recipe-content > div > blockquote")
           ?.text
-          ?.trim();
+          ?.removeNewLinesAndWhitespaces();
 
       /// 成份, e.g: 食材：牛肋條、牛番茄、鹽巴、紅蘿蔔、白胡椒粉、洋蔥、黑胡椒、義大利香料粉、番茄醬
       final String? ingredient = currentElement
           ?.querySelector("a > article > div.browse-recipe-content > div > p")
           ?.text
-          ?.trim();
+          ?.removeNewLinesAndWhitespaces();
 
       /// 烹飪時間, e.g: 45 分
       String? cookingTime = currentElement
           ?.querySelector(
               "a > article > div.browse-recipe-content > ul.browse-recipe-meta > li.browse-recipe-meta-item:nth-child(1)")
           ?.text
-          ?.trim();
+          ?.removeNewLinesAndWhitespaces();
 
       /// 處理沒有"烹飪時間"的情況
       if (cookingTime != null) {
@@ -120,8 +123,10 @@ class IcookExplodeParser {
 
     /// 食譜名稱
     /// e.g: 羅宋湯
-    String? name =
-        document.getElementById("recipe-name")?.text?.removeNewLines()?.trim();
+    String? name = document
+        .getElementById("recipe-name")
+        ?.text
+        ?.removeNewLinesAndWhitespaces();
 
     /// 食譜簡介
     /// e.g: 牛肉羅宋湯，一鍋到底的不正宗口味，哈哈！沒買到月桂葉，但是味道也是很美味。
@@ -129,10 +134,15 @@ class IcookExplodeParser {
         .querySelector(
             "div.recipe-details > div.recipe-details-header.recipe-details-block > section > p")
         ?.text
-        ?.removeNewLines()
-        ?.trim();
+        ?.removeNewLinesAndWhitespaces();
 
-
+    /// 份量
+    /// 3人份
+    final servings = document
+        .querySelector(
+            "div.recipe-details-info.recipe-details-block > div.servings-info.info-block > div > div.servings")
+        ?.text
+        ?.removeNewLinesAndWhitespaces();
 
     return name;
   }
