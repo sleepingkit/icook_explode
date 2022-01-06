@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -60,6 +61,33 @@ void main() {
           predicate(
             (e) {
               return e is IcookExplodeRequestErrorException && e.code == 400;
+            },
+          ),
+        ),
+      );
+    });
+
+    test('http call timeout exception', () async {
+      const String searchKey = '羅宋湯';
+      final mockClient = MockClient();
+
+      when(mockClient.get(Uri.parse('https://icook.tw/search/' + searchKey)))
+          .thenAnswer((_) async {
+        throw TimeoutException("Timeout test");
+      });
+
+      final icookExplode = IcookExplode();
+      var request = icookExplode.search(
+        httpClient: mockClient,
+        searchKey: searchKey,
+      );
+
+      expect(
+        request,
+        throwsA(
+          predicate(
+            (e) {
+              return e is TimeoutException;
             },
           ),
         ),
