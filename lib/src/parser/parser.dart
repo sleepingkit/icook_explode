@@ -5,10 +5,20 @@ import 'package:universal_html/html.dart';
 import 'package:universal_html/parsing.dart';
 
 import '../extension/string_ex.dart';
+import 'exception.dart';
 
 class IcookExplodeParser {
   RecipesModel searchContentParser(String rawHtml) {
     HtmlDocument document = parseHtmlDocument(rawHtml);
+
+    /// 驗證，如果無result-browse-layout, 當係invalid
+    final List<Node> verifyNode =
+        document.getElementsByClassName("result-browse-layout");
+
+    if (verifyNode.isEmpty) {
+      throw IcookExplodeParserException(
+          IcookExplodeParserErrorType.invalidContent);
+    }
 
     /// 食譜名稱
     /// e.g: 羅宋湯
