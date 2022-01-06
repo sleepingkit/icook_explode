@@ -15,7 +15,7 @@ _$_RecipeDetailModel _$$_RecipeDetailModelFromJson(Map<String, dynamic> json) =>
       ingredientsGroups: (json['ingredientsGroups'] as List<dynamic>?)
           ?.map((e) => IngredientsGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
-      processStep: (json['processStep'] as List<dynamic>?)
+      processSteps: (json['processSteps'] as List<dynamic>?)
           ?.map((e) => ProcessStep.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -28,7 +28,7 @@ Map<String, dynamic> _$$_RecipeDetailModelToJson(
       'servings': instance.servings,
       'time': instance.time,
       'ingredientsGroups': instance.ingredientsGroups,
-      'processStep': instance.processStep,
+      'processSteps': instance.processSteps,
     };
 
 _$_IngredientsGroup _$$_IngredientsGroupFromJson(Map<String, dynamic> json) =>
@@ -61,7 +61,7 @@ Map<String, dynamic> _$$_IngredientToJson(_$_Ingredient instance) =>
 
 _$_ProcessStep _$$_ProcessStepFromJson(Map<String, dynamic> json) =>
     _$_ProcessStep(
-      index: json['index'] as int?,
+      index: json['index'] as int,
       description: json['description'] as String?,
       imageUrl: json['imageUrl'] as String?,
     );

@@ -58,8 +58,22 @@ void main() {
       final fileContent = await file.readAsString();
 
       final parser = IcookExplodeParser();
-      RecipeDetailModel? result = parser.detailContentParser(fileContent);
-      return result;
+      RecipeDetailModel result = parser.detailContentParser(fileContent);
+
+      expect(result.name, "羅宋湯");
+      expect(result.description, "牛肉羅宋湯，一鍋到底的不正宗口味，哈哈！沒買到月桂葉，但是味道也是很美味。");
+      expect(result.servings, "3人份");
+      expect(result.time, "45分鐘");
+      expect(result.ingredientsGroups?.length, 2);
+      expect(result.ingredientsGroups?.last.category, "調味");
+      expect(result.ingredientsGroups?.last.ingredients?.length, 5);
+      expect(result.ingredientsGroups?.last.ingredients?.first.name, "鹽巴");
+      expect(result.ingredientsGroups?.last.ingredients?.first.unit, "1小匙");
+      expect(result.processSteps?.length, 5);
+      expect(result.processSteps?.first.index, 0);
+      expect(result.processSteps?.last.index, 4);
+      expect(result.processSteps?.last.description,
+          "加入適量的水至8分滿，放入2顆雞湯塊（也可以可以直接買雞高湯罐回來加）再把牛肉放回一同煮，小火慢煮20分鐘即可起鍋，喜歡味道重一點的起鍋前也可以再加入一些義式香料。");
     });
   });
 }

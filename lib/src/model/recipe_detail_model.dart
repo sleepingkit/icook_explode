@@ -24,7 +24,7 @@ class RecipeDetailModel with _$RecipeDetailModel {
     String? servings,
     String? time,
     List<IngredientsGroup>? ingredientsGroups,
-    List<ProcessStep>? processStep,
+    List<ProcessStep>? processSteps,
   }) = _RecipeDetailModel;
 
   factory RecipeDetailModel.fromJson(Map<String, dynamic> json) =>
@@ -57,7 +57,7 @@ class Ingredient with _$Ingredient {
 @freezed
 class ProcessStep with _$ProcessStep {
   const factory ProcessStep({
-    int? index,
+    required int index,
     String? description,
     String? imageUrl,
   }) = _ProcessStep;

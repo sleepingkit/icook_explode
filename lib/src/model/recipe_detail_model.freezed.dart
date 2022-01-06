@@ -28,14 +28,14 @@ class _$RecipeDetailModelTearOff {
       String? servings,
       String? time,
       List<IngredientsGroup>? ingredientsGroups,
-      List<ProcessStep>? processStep}) {
+      List<ProcessStep>? processSteps}) {
     return _RecipeDetailModel(
       name: name,
       description: description,
       servings: servings,
       time: time,
       ingredientsGroups: ingredientsGroups,
-      processStep: processStep,
+      processSteps: processSteps,
     );
   }
 
@@ -55,7 +55,7 @@ mixin _$RecipeDetailModel {
   String? get time => throw _privateConstructorUsedError;
   List<IngredientsGroup>? get ingredientsGroups =>
       throw _privateConstructorUsedError;
-  List<ProcessStep>? get processStep => throw _privateConstructorUsedError;
+  List<ProcessStep>? get processSteps => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,7 +74,7 @@ abstract class $RecipeDetailModelCopyWith<$Res> {
       String? servings,
       String? time,
       List<IngredientsGroup>? ingredientsGroups,
-      List<ProcessStep>? processStep});
+      List<ProcessStep>? processSteps});
 }
 
 /// @nodoc
@@ -93,7 +93,7 @@ class _$RecipeDetailModelCopyWithImpl<$Res>
     Object? servings = freezed,
     Object? time = freezed,
     Object? ingredientsGroups = freezed,
-    Object? processStep = freezed,
+    Object? processSteps = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -116,9 +116,9 @@ class _$RecipeDetailModelCopyWithImpl<$Res>
           ? _value.ingredientsGroups
           : ingredientsGroups // ignore: cast_nullable_to_non_nullable
               as List<IngredientsGroup>?,
-      processStep: processStep == freezed
-          ? _value.processStep
-          : processStep // ignore: cast_nullable_to_non_nullable
+      processSteps: processSteps == freezed
+          ? _value.processSteps
+          : processSteps // ignore: cast_nullable_to_non_nullable
               as List<ProcessStep>?,
     ));
   }
@@ -137,7 +137,7 @@ abstract class _$RecipeDetailModelCopyWith<$Res>
       String? servings,
       String? time,
       List<IngredientsGroup>? ingredientsGroups,
-      List<ProcessStep>? processStep});
+      List<ProcessStep>? processSteps});
 }
 
 /// @nodoc
@@ -158,7 +158,7 @@ class __$RecipeDetailModelCopyWithImpl<$Res>
     Object? servings = freezed,
     Object? time = freezed,
     Object? ingredientsGroups = freezed,
-    Object? processStep = freezed,
+    Object? processSteps = freezed,
   }) {
     return _then(_RecipeDetailModel(
       name: name == freezed
@@ -181,9 +181,9 @@ class __$RecipeDetailModelCopyWithImpl<$Res>
           ? _value.ingredientsGroups
           : ingredientsGroups // ignore: cast_nullable_to_non_nullable
               as List<IngredientsGroup>?,
-      processStep: processStep == freezed
-          ? _value.processStep
-          : processStep // ignore: cast_nullable_to_non_nullable
+      processSteps: processSteps == freezed
+          ? _value.processSteps
+          : processSteps // ignore: cast_nullable_to_non_nullable
               as List<ProcessStep>?,
     ));
   }
@@ -198,7 +198,7 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
       this.servings,
       this.time,
       this.ingredientsGroups,
-      this.processStep});
+      this.processSteps});
 
   factory _$_RecipeDetailModel.fromJson(Map<String, dynamic> json) =>
       _$$_RecipeDetailModelFromJson(json);
@@ -214,11 +214,11 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
   @override
   final List<IngredientsGroup>? ingredientsGroups;
   @override
-  final List<ProcessStep>? processStep;
+  final List<ProcessStep>? processSteps;
 
   @override
   String toString() {
-    return 'RecipeDetailModel(name: $name, description: $description, servings: $servings, time: $time, ingredientsGroups: $ingredientsGroups, processStep: $processStep)';
+    return 'RecipeDetailModel(name: $name, description: $description, servings: $servings, time: $time, ingredientsGroups: $ingredientsGroups, processSteps: $processSteps)';
   }
 
   @override
@@ -234,7 +234,7 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
             const DeepCollectionEquality()
                 .equals(other.ingredientsGroups, ingredientsGroups) &&
             const DeepCollectionEquality()
-                .equals(other.processStep, processStep));
+                .equals(other.processSteps, processSteps));
   }
 
   @override
@@ -245,7 +245,7 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
       const DeepCollectionEquality().hash(servings),
       const DeepCollectionEquality().hash(time),
       const DeepCollectionEquality().hash(ingredientsGroups),
-      const DeepCollectionEquality().hash(processStep));
+      const DeepCollectionEquality().hash(processSteps));
 
   @JsonKey(ignore: true)
   @override
@@ -265,7 +265,7 @@ abstract class _RecipeDetailModel implements RecipeDetailModel {
       String? servings,
       String? time,
       List<IngredientsGroup>? ingredientsGroups,
-      List<ProcessStep>? processStep}) = _$_RecipeDetailModel;
+      List<ProcessStep>? processSteps}) = _$_RecipeDetailModel;
 
   factory _RecipeDetailModel.fromJson(Map<String, dynamic> json) =
       _$_RecipeDetailModel.fromJson;
@@ -281,7 +281,7 @@ abstract class _RecipeDetailModel implements RecipeDetailModel {
   @override
   List<IngredientsGroup>? get ingredientsGroups;
   @override
-  List<ProcessStep>? get processStep;
+  List<ProcessStep>? get processSteps;
   @override
   @JsonKey(ignore: true)
   _$RecipeDetailModelCopyWith<_RecipeDetailModel> get copyWith =>
@@ -650,7 +650,8 @@ ProcessStep _$ProcessStepFromJson(Map<String, dynamic> json) {
 class _$ProcessStepTearOff {
   const _$ProcessStepTearOff();
 
-  _ProcessStep call({int? index, String? description, String? imageUrl}) {
+  _ProcessStep call(
+      {required int index, String? description, String? imageUrl}) {
     return _ProcessStep(
       index: index,
       description: description,
@@ -668,7 +669,7 @@ const $ProcessStep = _$ProcessStepTearOff();
 
 /// @nodoc
 mixin _$ProcessStep {
-  int? get index => throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
@@ -683,7 +684,7 @@ abstract class $ProcessStepCopyWith<$Res> {
   factory $ProcessStepCopyWith(
           ProcessStep value, $Res Function(ProcessStep) then) =
       _$ProcessStepCopyWithImpl<$Res>;
-  $Res call({int? index, String? description, String? imageUrl});
+  $Res call({int index, String? description, String? imageUrl});
 }
 
 /// @nodoc
@@ -704,7 +705,7 @@ class _$ProcessStepCopyWithImpl<$Res> implements $ProcessStepCopyWith<$Res> {
       index: index == freezed
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -724,7 +725,7 @@ abstract class _$ProcessStepCopyWith<$Res>
           _ProcessStep value, $Res Function(_ProcessStep) then) =
       __$ProcessStepCopyWithImpl<$Res>;
   @override
-  $Res call({int? index, String? description, String? imageUrl});
+  $Res call({int index, String? description, String? imageUrl});
 }
 
 /// @nodoc
@@ -747,7 +748,7 @@ class __$ProcessStepCopyWithImpl<$Res> extends _$ProcessStepCopyWithImpl<$Res>
       index: index == freezed
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -763,13 +764,13 @@ class __$ProcessStepCopyWithImpl<$Res> extends _$ProcessStepCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ProcessStep implements _ProcessStep {
-  const _$_ProcessStep({this.index, this.description, this.imageUrl});
+  const _$_ProcessStep({required this.index, this.description, this.imageUrl});
 
   factory _$_ProcessStep.fromJson(Map<String, dynamic> json) =>
       _$$_ProcessStepFromJson(json);
 
   @override
-  final int? index;
+  final int index;
   @override
   final String? description;
   @override
@@ -811,13 +812,15 @@ class _$_ProcessStep implements _ProcessStep {
 
 abstract class _ProcessStep implements ProcessStep {
   const factory _ProcessStep(
-      {int? index, String? description, String? imageUrl}) = _$_ProcessStep;
+      {required int index,
+      String? description,
+      String? imageUrl}) = _$_ProcessStep;
 
   factory _ProcessStep.fromJson(Map<String, dynamic> json) =
       _$_ProcessStep.fromJson;
 
   @override
-  int? get index;
+  int get index;
   @override
   String? get description;
   @override

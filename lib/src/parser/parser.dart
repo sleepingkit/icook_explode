@@ -1,3 +1,4 @@
+import 'package:collection/src/list_extensions.dart';
 import 'package:icook_explode/src/model/recipe_detail_model.dart';
 import 'package:icook_explode/src/model/recipes_model.dart';
 import 'package:universal_html/html.dart';
@@ -11,7 +12,8 @@ class IcookExplodeParser {
 
     /// 食譜名稱
     /// e.g: 羅宋湯
-    final List<Node> nameNode = document.getElementsByClassName("browse-title-name");
+    final List<Node> nameNode =
+        document.getElementsByClassName("browse-title-name");
     String? name = nameNode.isEmpty
         ? null
         : nameNode.first.text?.removeNewLinesAndWhitespaces();
@@ -119,7 +121,7 @@ class IcookExplodeParser {
     );
   }
 
-  RecipeDetailModel? detailContentParser(String rawHtml) {
+  RecipeDetailModel detailContentParser(String rawHtml) {
     HtmlDocument document = parseHtmlDocument(rawHtml);
 
     /// 食譜名稱
@@ -216,13 +218,33 @@ class IcookExplodeParser {
       );
     }).toList();
 
+    /// 步驟
+    final ElementList<Element> processStepsNode = document.querySelectorAll(
+        "div.recipe-details > div.recipe-details-howto > ul.recipe-details-steps > li.recipe-details-step-item");
+
+    final List<ProcessStep> processSteps =
+        processStepsNode.mapIndexed((index, processStep) {
+      final imgUrl =
+          processStep.querySelector("figure > a")?.getAttribute("href");
+      final description = processStep
+          .querySelector(
+              "figure > figcaption > p.recipe-step-description-content")
+          ?.text;
+
+      return ProcessStep(
+        index: index,
+        imageUrl: imgUrl,
+        description: description,
+      );
+    }).toList();
+
     return RecipeDetailModel(
       name: name,
       description: description,
       servings: servings,
       time: time,
       ingredientsGroups: ingredientsGroup,
-      processStep: null,
+      processSteps: processSteps,
     );
   }
 }
