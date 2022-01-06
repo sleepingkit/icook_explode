@@ -137,12 +137,25 @@ class IcookExplodeParser {
         ?.removeNewLinesAndWhitespaces();
 
     /// 份量
-    /// 3人份
+    /// e.g: 3人份
     final servings = document
         .querySelector(
-            "div.recipe-details-info.recipe-details-block > div.servings-info.info-block > div > div.servings")
+            "div.recipe-details-info.recipe-details-block > div.servings-info.info-block > div.info-content > div.servings")
         ?.text
         ?.removeNewLinesAndWhitespaces();
+
+    /// 時間
+    /// e.g: 45分鐘
+    final time = document
+        .querySelector(
+            "div.recipe-details-info.recipe-details-block > div.time-info.info-block > div.info-content")
+        ?.text
+        ?.removeNewLinesAndWhitespaces();
+
+    /// 食材, https://icook.tw/recipes/397794
+    /// universal_html not support "div:not(:first-child)"
+    final test = document.querySelectorAll(
+        "#o-wrapper > div:nth-child(7) > div.row.row--flex > main > article > div.recipe-details > div.recipe-details-ingredients.recipe-details-block > div > div:not(:first-child)");
 
     return name;
   }
