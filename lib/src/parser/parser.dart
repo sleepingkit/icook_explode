@@ -136,7 +136,7 @@ class IcookExplodeParser {
 
     /// 驗證，如果無recipe-details-header-title, 當係invalid
     final List<Node> verifyNode =
-    document.getElementsByClassName("recipe-details-header-title");
+        document.getElementsByClassName("recipe-details-header-title");
 
     if (verifyNode.isEmpty) {
       throw IcookExplodeParserException(
