@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:icook_explode/icook_explode.dart';
+import 'package:icook_explode/src/parser/exception.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -36,6 +37,33 @@ void main() {
         searchKey: searchKey,
       );
       expect(response.name, searchKey);
+    });
+
+    test('http call received 400', () async {
+      const String searchKey = '羅宋湯';
+      final mockClient = MockClient();
+
+      when(mockClient.get(Uri.parse('https://icook.tw/search/' + searchKey)))
+          .thenAnswer((_) async {
+        return http.Response("", 400);
+      });
+
+      final icookExplode = IcookExplode();
+      var request = icookExplode.search(
+        httpClient: mockClient,
+        searchKey: searchKey,
+      );
+
+      expect(
+        request,
+        throwsA(
+          predicate(
+            (e) {
+              return e is IcookExplodeRequestErrorException && e.code == 400;
+            },
+          ),
+        ),
+      );
     });
   });
 }
