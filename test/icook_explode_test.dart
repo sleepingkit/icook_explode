@@ -7,13 +7,6 @@ import 'package:icook_explode/src/model/recipes_model.dart';
 import 'package:icook_explode/src/parser/exception.dart';
 
 void main() {
-  test('adds one to input values', () {
-    final calculator = IcookExplode();
-    expect(calculator.addOne(2), 3);
-    expect(calculator.addOne(-7), -6);
-    expect(calculator.addOne(0), 1);
-  });
-
   group('Parser', () {
     group('Search content HTML', () {
       test('[SUCCESS CASE] Normal HTML', () async {
