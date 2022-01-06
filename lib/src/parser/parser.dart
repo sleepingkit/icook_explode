@@ -11,14 +11,14 @@ class IcookExplodeParser {
 
     /// 食譜名稱
     /// e.g: 羅宋湯
-    final nameNode = document.getElementsByClassName("browse-title-name");
+    final List<Node> nameNode = document.getElementsByClassName("browse-title-name");
     String? name = nameNode.isEmpty
         ? null
         : nameNode.first.text?.removeNewLinesAndWhitespaces();
 
     /// 食譜總數 (只供參考)
     /// 234 道食譜
-    final recipesTotalCountNode =
+    final List<Node> recipesTotalCountNode =
         document.getElementsByClassName("browse-title-count");
     String? recipesTotalCount = recipesTotalCountNode.isEmpty
         ? null
@@ -26,7 +26,7 @@ class IcookExplodeParser {
 
     /// 食譜簡介
     /// e.g: description
-    final descriptionElement = document
+    final List<Node> descriptionElement = document
         .getElementsByClassName("styles-module__searchKeywordContent___hdMIz");
     String? description = descriptionElement.isEmpty
         ? null
@@ -42,7 +42,7 @@ class IcookExplodeParser {
     ///         "牛肉湯",
     ///         "番茄湯"
     ///     ]
-    final suggestionsElement = document.querySelectorAll(
+    final ElementList<Element> suggestionsElement = document.querySelectorAll(
         "#o-wrapper > div:nth-child(6) > div.row.row--flex > main > header > section:nth-child(5) > ul > li > a");
     final List<String>? suggestions = suggestionsElement
         .map((Node e) => e.text?.removeNewLinesAndWhitespaces())
