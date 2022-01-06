@@ -14,18 +14,6 @@ void main() {
     expect(calculator.addOne(0), 1);
   });
 
-  test('try http', () async {
-    final calculator = IcookExplode();
-    var response = await calculator.tryHttp();
-    expect(response.isEmpty, false);
-  });
-
-  test('Load a file', () async {
-    final file = File('test/sample_data/search_sample.html');
-    final fileContent = await file.readAsString();
-    expect(fileContent.isEmpty, false);
-  });
-
   group('Parser', () {
     group('Search content HTML', () {
       test('[SUCCESS CASE] Normal HTML', () async {
@@ -63,13 +51,7 @@ void main() {
 
         expect(
           () => parser.searchContentParser(fileContent),
-          throwsA(
-            predicate(
-              (e) =>
-                  e is IcookExplodeParserException &&
-                  e.type == IcookExplodeParserErrorType.invalidContent,
-            ),
-          ),
+          throwsA(isA<IcookExplodeInvalidContentException>()),
         );
       });
     });
@@ -106,13 +88,7 @@ void main() {
 
         expect(
           () => parser.detailContentParser(fileContent),
-          throwsA(
-            predicate(
-              (e) =>
-                  e is IcookExplodeParserException &&
-                  e.type == IcookExplodeParserErrorType.invalidContent,
-            ),
-          ),
+          throwsA(isA<IcookExplodeInvalidContentException>()),
         );
       });
     });

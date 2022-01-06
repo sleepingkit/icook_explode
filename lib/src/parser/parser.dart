@@ -16,8 +16,7 @@ class IcookExplodeParser {
         document.getElementsByClassName("result-browse-layout");
 
     if (verifyNode.isEmpty) {
-      throw IcookExplodeParserException(
-          IcookExplodeParserErrorType.invalidContent);
+      throw IcookExplodeInvalidContentException(rawHtml: rawHtml);
     }
 
     /// 食譜名稱
@@ -139,8 +138,7 @@ class IcookExplodeParser {
         document.getElementsByClassName("recipe-details-header-title");
 
     if (verifyNode.isEmpty) {
-      throw IcookExplodeParserException(
-          IcookExplodeParserErrorType.invalidContent);
+      throw IcookExplodeInvalidContentException(rawHtml: rawHtml);
     }
 
     /// 食譜名稱

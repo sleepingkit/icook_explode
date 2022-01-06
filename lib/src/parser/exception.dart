@@ -1,13 +1,29 @@
-enum IcookExplodeParserErrorType {
+import 'package:http/http.dart';
+
+class IcookExplodeException implements Exception {}
+
+enum IcookExplodeErrorType {
+  /// http call 不成功
+  requestError,
+
   /// 無效的內容
   invalidContent,
 }
 
-class IcookExplodeParserException implements Exception {
-  final IcookExplodeParserErrorType type;
+class IcookExplodeInvalidContentException implements Exception {
+  final String rawHtml;
 
-  IcookExplodeParserException(this.type);
+  IcookExplodeInvalidContentException({required this.rawHtml});
+}
 
-  @override
-  String toString() => 'IcookExplodeParserException: $type';
+class IcookExplodeRequestErrorException implements Exception {
+  final int code;
+  final String? message;
+  final Response? response;
+
+  IcookExplodeRequestErrorException({
+    required this.code,
+    this.message,
+    this.response,
+  });
 }
