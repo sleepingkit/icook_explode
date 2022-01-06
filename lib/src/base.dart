@@ -12,9 +12,11 @@ class IcookExplode {
   Future<RecipesModel> search({
     http.Client? httpClient,
     required String searchKey,
+    int page = 1,
   }) async {
     httpClient = httpClient ?? http.Client();
-    var url = Uri.parse('https://icook.tw/search/' + searchKey);
+    // TODO:  '/?page=$page'
+    var url = Uri.https('icook.tw', '/search/$searchKey');
     http.Response response = await httpClient.get(url);
 
     if (response.statusCode == 200) {
