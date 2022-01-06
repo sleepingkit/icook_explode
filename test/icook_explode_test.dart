@@ -97,6 +97,24 @@ void main() {
         expect(result.processSteps?.last.description,
             "加入適量的水至8分滿，放入2顆雞湯塊（也可以可以直接買雞高湯罐回來加）再把牛肉放回一同煮，小火慢煮20分鐘即可起鍋，喜歡味道重一點的起鍋前也可以再加入一些義式香料。");
       });
+
+      test('[Failure case] Invalid HTML', () async {
+        final file = File('test/sample_data/detail/invalid_sample.html');
+        final fileContent = await file.readAsString();
+
+        final parser = IcookExplodeParser();
+
+        expect(
+          () => parser.detailContentParser(fileContent),
+          throwsA(
+            predicate(
+              (e) =>
+                  e is IcookExplodeParserException &&
+                  e.type == IcookExplodeParserErrorType.invalidContent,
+            ),
+          ),
+        );
+      });
     });
   });
 }

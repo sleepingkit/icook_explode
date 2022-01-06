@@ -134,6 +134,15 @@ class IcookExplodeParser {
   RecipeDetailModel detailContentParser(String rawHtml) {
     HtmlDocument document = parseHtmlDocument(rawHtml);
 
+    /// 驗證，如果無recipe-details-header-title, 當係invalid
+    final List<Node> verifyNode =
+    document.getElementsByClassName("recipe-details-header-title");
+
+    if (verifyNode.isEmpty) {
+      throw IcookExplodeParserException(
+          IcookExplodeParserErrorType.invalidContent);
+    }
+
     /// 食譜名稱
     /// e.g: 羅宋湯
     String? name = document
