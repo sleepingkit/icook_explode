@@ -21,7 +21,7 @@ class RecipeDetailModel with _$RecipeDetailModel {
   const factory RecipeDetailModel({
     String? name,
     String? description,
-    String? quantity,
+    String? servings,
     String? time,
     List<IngredientsGroup>? ingredientsGroups,
     List<ProcessStep>? processStep,
@@ -47,6 +47,7 @@ class Ingredient with _$Ingredient {
   const factory Ingredient({
     String? name,
     String? unit,
+    String? href,
   }) = _Ingredient;
 
   factory Ingredient.fromJson(Map<String, dynamic> json) =>

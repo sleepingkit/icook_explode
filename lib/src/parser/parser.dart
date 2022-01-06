@@ -1,3 +1,4 @@
+import 'package:icook_explode/src/model/recipe_detail_model.dart';
 import 'package:icook_explode/src/model/recipes_model.dart';
 import 'package:universal_html/html.dart';
 import 'package:universal_html/parsing.dart';
@@ -118,7 +119,7 @@ class IcookExplodeParser {
     );
   }
 
-  String? detailContentParser(String rawHtml) {
+  RecipeDetailModel? detailContentParser(String rawHtml) {
     HtmlDocument document = parseHtmlDocument(rawHtml);
 
     /// 食譜名稱
@@ -138,7 +139,7 @@ class IcookExplodeParser {
 
     /// 份量
     /// e.g: 3人份
-    final servings = document
+    final String? servings = document
         .querySelector(
             "div.recipe-details-info.recipe-details-block > div.servings-info.info-block > div.info-content > div.servings")
         ?.text
@@ -146,7 +147,7 @@ class IcookExplodeParser {
 
     /// 時間
     /// e.g: 45分鐘
-    final time = document
+    final String? time = document
         .querySelector(
             "div.recipe-details-info.recipe-details-block > div.time-info.info-block > div.info-content")
         ?.text
@@ -154,9 +155,74 @@ class IcookExplodeParser {
 
     /// 食材, https://icook.tw/recipes/397794
     /// universal_html not support "div:not(:first-child)"
-    final test = document.querySelectorAll(
-        "#o-wrapper > div:nth-child(7) > div.row.row--flex > main > article > div.recipe-details > div.recipe-details-ingredients.recipe-details-block > div > div:not(:first-child)");
+    List<Element> ingredientsGroupsElement = document
+        .querySelectorAll(
+            "div.recipe-details > div.recipe-details-ingredients.recipe-details-block > div > div")
+        .toList();
 
-    return name;
+    // Remove first element, because it is placeholder
+    if (ingredientsGroupsElement.isNotEmpty) {
+      ingredientsGroupsElement.removeAt(0);
+    }
+
+    List<IngredientsGroup> ingredientsGroup =
+        ingredientsGroupsElement.map((ingredientsGroupElement) {
+      /// 食材類別名稱
+      /// e.g: 調味
+      final List<Node> categoryNode =
+          ingredientsGroupElement.getElementsByClassName("group-name");
+      String? categoryName = categoryNode.isEmpty
+          ? null
+          : categoryNode.first.text?.removeNewLinesAndWhitespaces();
+
+      /// 食材類別列表
+      final ElementList<Element> ingredientsElement = ingredientsGroupElement
+          .querySelectorAll("div.ingredients > div.ingredient");
+
+      /// 食材列表
+      List<Ingredient> ingredients =
+          ingredientsElement.map((ingredientElement) {
+        final Element? ingredientNameElement =
+            ingredientElement.querySelector("div.ingredient-name > a");
+
+        /// 食材名
+        /// e.g: 牛肋條
+        String? ingredientName =
+            ingredientNameElement?.text?.removeNewLinesAndWhitespaces();
+
+        /// 食材search path
+        /// e.g: /search/%E9%A3%9F%E6%9D%90%EF%BC%9A%E7%89%9B%E8%82%8B%E6%A2%9D/
+        String? ingredientHrefPath =
+            ingredientNameElement?.getAttribute("href");
+
+        /// 食材用量
+        /// e.g: 一盒
+        String? ingredientUnit = ingredientElement
+            .querySelector("div.ingredient-unit")
+            ?.text
+            ?.removeNewLinesAndWhitespaces();
+
+        return Ingredient(
+            name: ingredientName,
+            href: ingredientHrefPath == null
+                ? null
+                : "https://icook.tw" + ingredientHrefPath,
+            unit: ingredientUnit);
+      }).toList();
+
+      return IngredientsGroup(
+        category: categoryName,
+        ingredients: ingredients,
+      );
+    }).toList();
+
+    return RecipeDetailModel(
+      name: name,
+      description: description,
+      servings: servings,
+      time: time,
+      ingredientsGroups: ingredientsGroup,
+      processStep: null,
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:icook_explode/icook_explode.dart';
+import 'package:icook_explode/src/model/recipe_detail_model.dart';
 import 'package:icook_explode/src/model/recipes_model.dart';
 
 void main() {
@@ -57,7 +58,7 @@ void main() {
       final fileContent = await file.readAsString();
 
       final parser = IcookExplodeParser();
-      String? result = parser.detailContentParser(fileContent);
+      RecipeDetailModel? result = parser.detailContentParser(fileContent);
       return result;
     });
   });

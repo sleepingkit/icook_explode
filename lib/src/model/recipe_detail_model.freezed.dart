@@ -25,14 +25,14 @@ class _$RecipeDetailModelTearOff {
   _RecipeDetailModel call(
       {String? name,
       String? description,
-      String? quantity,
+      String? servings,
       String? time,
       List<IngredientsGroup>? ingredientsGroups,
       List<ProcessStep>? processStep}) {
     return _RecipeDetailModel(
       name: name,
       description: description,
-      quantity: quantity,
+      servings: servings,
       time: time,
       ingredientsGroups: ingredientsGroups,
       processStep: processStep,
@@ -51,7 +51,7 @@ const $RecipeDetailModel = _$RecipeDetailModelTearOff();
 mixin _$RecipeDetailModel {
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  String? get quantity => throw _privateConstructorUsedError;
+  String? get servings => throw _privateConstructorUsedError;
   String? get time => throw _privateConstructorUsedError;
   List<IngredientsGroup>? get ingredientsGroups =>
       throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ abstract class $RecipeDetailModelCopyWith<$Res> {
   $Res call(
       {String? name,
       String? description,
-      String? quantity,
+      String? servings,
       String? time,
       List<IngredientsGroup>? ingredientsGroups,
       List<ProcessStep>? processStep});
@@ -90,7 +90,7 @@ class _$RecipeDetailModelCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? description = freezed,
-    Object? quantity = freezed,
+    Object? servings = freezed,
     Object? time = freezed,
     Object? ingredientsGroups = freezed,
     Object? processStep = freezed,
@@ -104,9 +104,9 @@ class _$RecipeDetailModelCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      quantity: quantity == freezed
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
+      servings: servings == freezed
+          ? _value.servings
+          : servings // ignore: cast_nullable_to_non_nullable
               as String?,
       time: time == freezed
           ? _value.time
@@ -134,7 +134,7 @@ abstract class _$RecipeDetailModelCopyWith<$Res>
   $Res call(
       {String? name,
       String? description,
-      String? quantity,
+      String? servings,
       String? time,
       List<IngredientsGroup>? ingredientsGroups,
       List<ProcessStep>? processStep});
@@ -155,7 +155,7 @@ class __$RecipeDetailModelCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? description = freezed,
-    Object? quantity = freezed,
+    Object? servings = freezed,
     Object? time = freezed,
     Object? ingredientsGroups = freezed,
     Object? processStep = freezed,
@@ -169,9 +169,9 @@ class __$RecipeDetailModelCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      quantity: quantity == freezed
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
+      servings: servings == freezed
+          ? _value.servings
+          : servings // ignore: cast_nullable_to_non_nullable
               as String?,
       time: time == freezed
           ? _value.time
@@ -195,7 +195,7 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
   const _$_RecipeDetailModel(
       {this.name,
       this.description,
-      this.quantity,
+      this.servings,
       this.time,
       this.ingredientsGroups,
       this.processStep});
@@ -208,7 +208,7 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
   @override
   final String? description;
   @override
-  final String? quantity;
+  final String? servings;
   @override
   final String? time;
   @override
@@ -218,7 +218,7 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
 
   @override
   String toString() {
-    return 'RecipeDetailModel(name: $name, description: $description, quantity: $quantity, time: $time, ingredientsGroups: $ingredientsGroups, processStep: $processStep)';
+    return 'RecipeDetailModel(name: $name, description: $description, servings: $servings, time: $time, ingredientsGroups: $ingredientsGroups, processStep: $processStep)';
   }
 
   @override
@@ -229,7 +229,7 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.quantity, quantity) &&
+            const DeepCollectionEquality().equals(other.servings, servings) &&
             const DeepCollectionEquality().equals(other.time, time) &&
             const DeepCollectionEquality()
                 .equals(other.ingredientsGroups, ingredientsGroups) &&
@@ -242,7 +242,7 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(quantity),
+      const DeepCollectionEquality().hash(servings),
       const DeepCollectionEquality().hash(time),
       const DeepCollectionEquality().hash(ingredientsGroups),
       const DeepCollectionEquality().hash(processStep));
@@ -262,7 +262,7 @@ abstract class _RecipeDetailModel implements RecipeDetailModel {
   const factory _RecipeDetailModel(
       {String? name,
       String? description,
-      String? quantity,
+      String? servings,
       String? time,
       List<IngredientsGroup>? ingredientsGroups,
       List<ProcessStep>? processStep}) = _$_RecipeDetailModel;
@@ -275,7 +275,7 @@ abstract class _RecipeDetailModel implements RecipeDetailModel {
   @override
   String? get description;
   @override
-  String? get quantity;
+  String? get servings;
   @override
   String? get time;
   @override
@@ -466,10 +466,11 @@ Ingredient _$IngredientFromJson(Map<String, dynamic> json) {
 class _$IngredientTearOff {
   const _$IngredientTearOff();
 
-  _Ingredient call({String? name, String? unit}) {
+  _Ingredient call({String? name, String? unit, String? href}) {
     return _Ingredient(
       name: name,
       unit: unit,
+      href: href,
     );
   }
 
@@ -485,6 +486,7 @@ const $Ingredient = _$IngredientTearOff();
 mixin _$Ingredient {
   String? get name => throw _privateConstructorUsedError;
   String? get unit => throw _privateConstructorUsedError;
+  String? get href => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -497,7 +499,7 @@ abstract class $IngredientCopyWith<$Res> {
   factory $IngredientCopyWith(
           Ingredient value, $Res Function(Ingredient) then) =
       _$IngredientCopyWithImpl<$Res>;
-  $Res call({String? name, String? unit});
+  $Res call({String? name, String? unit, String? href});
 }
 
 /// @nodoc
@@ -512,6 +514,7 @@ class _$IngredientCopyWithImpl<$Res> implements $IngredientCopyWith<$Res> {
   $Res call({
     Object? name = freezed,
     Object? unit = freezed,
+    Object? href = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -521,6 +524,10 @@ class _$IngredientCopyWithImpl<$Res> implements $IngredientCopyWith<$Res> {
       unit: unit == freezed
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      href: href == freezed
+          ? _value.href
+          : href // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -532,7 +539,7 @@ abstract class _$IngredientCopyWith<$Res> implements $IngredientCopyWith<$Res> {
           _Ingredient value, $Res Function(_Ingredient) then) =
       __$IngredientCopyWithImpl<$Res>;
   @override
-  $Res call({String? name, String? unit});
+  $Res call({String? name, String? unit, String? href});
 }
 
 /// @nodoc
@@ -549,6 +556,7 @@ class __$IngredientCopyWithImpl<$Res> extends _$IngredientCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? unit = freezed,
+    Object? href = freezed,
   }) {
     return _then(_Ingredient(
       name: name == freezed
@@ -559,6 +567,10 @@ class __$IngredientCopyWithImpl<$Res> extends _$IngredientCopyWithImpl<$Res>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as String?,
+      href: href == freezed
+          ? _value.href
+          : href // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -566,7 +578,7 @@ class __$IngredientCopyWithImpl<$Res> extends _$IngredientCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Ingredient implements _Ingredient {
-  const _$_Ingredient({this.name, this.unit});
+  const _$_Ingredient({this.name, this.unit, this.href});
 
   factory _$_Ingredient.fromJson(Map<String, dynamic> json) =>
       _$$_IngredientFromJson(json);
@@ -575,10 +587,12 @@ class _$_Ingredient implements _Ingredient {
   final String? name;
   @override
   final String? unit;
+  @override
+  final String? href;
 
   @override
   String toString() {
-    return 'Ingredient(name: $name, unit: $unit)';
+    return 'Ingredient(name: $name, unit: $unit, href: $href)';
   }
 
   @override
@@ -587,14 +601,16 @@ class _$_Ingredient implements _Ingredient {
         (other.runtimeType == runtimeType &&
             other is _Ingredient &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.unit, unit));
+            const DeepCollectionEquality().equals(other.unit, unit) &&
+            const DeepCollectionEquality().equals(other.href, href));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(unit));
+      const DeepCollectionEquality().hash(unit),
+      const DeepCollectionEquality().hash(href));
 
   @JsonKey(ignore: true)
   @override
@@ -608,7 +624,8 @@ class _$_Ingredient implements _Ingredient {
 }
 
 abstract class _Ingredient implements Ingredient {
-  const factory _Ingredient({String? name, String? unit}) = _$_Ingredient;
+  const factory _Ingredient({String? name, String? unit, String? href}) =
+      _$_Ingredient;
 
   factory _Ingredient.fromJson(Map<String, dynamic> json) =
       _$_Ingredient.fromJson;
@@ -617,6 +634,8 @@ abstract class _Ingredient implements Ingredient {
   String? get name;
   @override
   String? get unit;
+  @override
+  String? get href;
   @override
   @JsonKey(ignore: true)
   _$IngredientCopyWith<_Ingredient> get copyWith =>
