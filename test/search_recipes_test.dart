@@ -17,8 +17,7 @@ import 'search_recipes_test.mocks.dart';
 @GenerateMocks([http.Client])
 void main() {
   group('Search Recipes', () {
-    test('returns an Recipes Model if the http call completes successfully',
-        () async {
+    test('search without pagination successfully', () async {
       const String searchKey = '羅宋湯';
       final mockClient = MockClient();
 
@@ -37,6 +36,31 @@ void main() {
       var response = await icookExplode.search(
         httpClient: mockClient,
         searchKey: searchKey,
+      );
+      expect(response.name, searchKey);
+    });
+
+    test('search with pagination successfully', () async {
+      const String searchKey = '羅宋湯';
+      final mockClient = MockClient();
+
+      // Use Mockito to return a successful response when it calls the
+      // provided http.Client.
+      when(mockClient.get(
+        Uri.https('icook.tw', '/search/$searchKey', {"page": "2"}),
+      )).thenAnswer((_) async {
+        // success_sample 是羅宋湯
+        final file =
+            File('test/sample_data/search/success_pagination_sample.html');
+        final Uint8List fileContent = await file.readAsBytes();
+        return http.Response.bytes(fileContent, 200);
+      });
+
+      final icookExplode = IcookExplode();
+      var response = await icookExplode.search(
+        httpClient: mockClient,
+        searchKey: searchKey,
+        page: 2,
       );
       expect(response.name, searchKey);
     });
