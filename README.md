@@ -37,3 +37,18 @@ const like = 'sample';
 TODO: Tell users more about the package: where to find more information, how to 
 contribute to the package, how to file issues, what response they can expect 
 from the package authors, and more.
+
+## test
+
+> https://pub.dev/packages/test#collecting-code-coverage
+
+```shell
+fvm flutter test test/search_recipes_test.dart --coverage ./coverage 
+
+fvm flutter pub global activate coverage
+
+fvm flutter pub global run coverage:format_coverage --packages=.packages --report-on=lib --lcov -o ./coverage/lcov.info -i ./coverage
+
+
+genhtml -o ./coverage/report ./coverage/lcov.info
+```
