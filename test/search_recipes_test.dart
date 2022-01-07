@@ -65,6 +65,34 @@ void main() {
       expect(response.name, searchKey);
     });
 
+    test('search with pagination overflow ', () async {
+      const String searchKey = '羅宋湯';
+      final mockClient = MockClient();
+
+      when(mockClient.get(
+        Uri.https('icook.tw', '/search/$searchKey', {"page": "99"}),
+      )).thenAnswer((_) async {
+        return http.Response("", 404);
+      });
+
+      final icookExplode = IcookExplode();
+      var request = icookExplode.search(
+        httpClient: mockClient,
+        searchKey: searchKey,
+        page: 99,
+      );
+      expect(
+        request,
+        throwsA(
+          predicate(
+            (e) {
+              return e is IcookExplodeRequestErrorException && e.code == 404;
+            },
+          ),
+        ),
+      );
+    });
+
     test('http call received 400', () async {
       const String searchKey = '羅宋湯';
       final mockClient = MockClient();
