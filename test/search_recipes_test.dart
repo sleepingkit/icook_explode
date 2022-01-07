@@ -27,7 +27,7 @@ void main() {
         Uri.https('icook.tw', '/search/$searchKey', {"page": "1"}),
       )).thenAnswer((_) async {
         // success_sample 是羅宋湯
-        final file = File('test/sample_data/search/success_sample.html');
+        final file = File('test/sample_data/search/success_search_key_sample.html');
         final Uint8List fileContent = await file.readAsBytes();
         return http.Response.bytes(fileContent, 200);
       });
@@ -51,7 +51,7 @@ void main() {
       )).thenAnswer((_) async {
         // success_sample 是羅宋湯
         final file =
-            File('test/sample_data/search/success_pagination_sample.html');
+            File('test/sample_data/search/success_search_key_with_pagination_sample.html');
         final Uint8List fileContent = await file.readAsBytes();
         return http.Response.bytes(fileContent, 200);
       });
@@ -65,7 +65,11 @@ void main() {
       expect(response.name, searchKey);
     });
 
-    test('search with pagination overflow ', () async {
+    test('search key not find', () async {
+
+    });
+
+    test('search with pagination overflow received 404', () async {
       const String searchKey = '羅宋湯';
       final mockClient = MockClient();
 

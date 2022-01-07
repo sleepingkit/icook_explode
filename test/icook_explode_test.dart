@@ -10,7 +10,7 @@ void main() {
   group('Parser', () {
     group('Search content HTML', () {
       test('[SUCCESS CASE] Normal HTML', () async {
-        final file = File('test/sample_data/search/success_sample.html');
+        final file = File('test/sample_data/search/success_search_key_sample.html');
         final fileContent = await file.readAsString();
 
         final parser = IcookExplodeParser();
@@ -51,7 +51,7 @@ void main() {
 
     group('Detail content HTML', () {
       test('[SUCCESS CASE] Normal HTML', () async {
-        final file = File('test/sample_data/detail/success_sample.html');
+        final file = File('test/sample_data/detail/success_search_key_sample.html');
         final fileContent = await file.readAsString();
 
         final parser = IcookExplodeParser();
