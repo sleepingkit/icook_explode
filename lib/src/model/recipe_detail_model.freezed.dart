@@ -41,12 +41,27 @@ const $RecipeDetailModel = _$RecipeDetailModelTearOff();
 
 /// @nodoc
 mixin _$RecipeDetailModel {
+  /// 食譜名稱
+  /// e.g: 羅宋湯
   String? get name => throw _privateConstructorUsedError;
+
+  /// 食譜簡介
+  /// e.g: 牛肉羅宋湯，一鍋到底的不正宗口味，哈哈！沒買到月桂葉，但是味道也是很美味。
   String? get description => throw _privateConstructorUsedError;
+
+  /// 份量
+  /// e.g: 3人份
   String? get servings => throw _privateConstructorUsedError;
+
+  /// 時間
+  /// e.g: 45分鐘
   String? get time => throw _privateConstructorUsedError;
+
+  /// 食材列表
   List<IngredientsGroup>? get ingredientsGroups =>
       throw _privateConstructorUsedError;
+
+  /// 製作步驟
   List<ProcessStep>? get processSteps => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -192,16 +207,32 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
       this.processSteps});
 
   @override
+
+  /// 食譜名稱
+  /// e.g: 羅宋湯
   final String? name;
   @override
+
+  /// 食譜簡介
+  /// e.g: 牛肉羅宋湯，一鍋到底的不正宗口味，哈哈！沒買到月桂葉，但是味道也是很美味。
   final String? description;
   @override
+
+  /// 份量
+  /// e.g: 3人份
   final String? servings;
   @override
+
+  /// 時間
+  /// e.g: 45分鐘
   final String? time;
   @override
+
+  /// 食材列表
   final List<IngredientsGroup>? ingredientsGroups;
   @override
+
+  /// 製作步驟
   final List<ProcessStep>? processSteps;
 
   @override
@@ -251,16 +282,32 @@ abstract class _RecipeDetailModel implements RecipeDetailModel {
       List<ProcessStep>? processSteps}) = _$_RecipeDetailModel;
 
   @override
+
+  /// 食譜名稱
+  /// e.g: 羅宋湯
   String? get name;
   @override
+
+  /// 食譜簡介
+  /// e.g: 牛肉羅宋湯，一鍋到底的不正宗口味，哈哈！沒買到月桂葉，但是味道也是很美味。
   String? get description;
   @override
+
+  /// 份量
+  /// e.g: 3人份
   String? get servings;
   @override
+
+  /// 時間
+  /// e.g: 45分鐘
   String? get time;
   @override
+
+  /// 食材列表
   List<IngredientsGroup>? get ingredientsGroups;
   @override
+
+  /// 製作步驟
   List<ProcessStep>? get processSteps;
   @override
   @JsonKey(ignore: true)
@@ -285,7 +332,9 @@ const $IngredientsGroup = _$IngredientsGroupTearOff();
 
 /// @nodoc
 mixin _$IngredientsGroup {
-  String? get category => throw _privateConstructorUsedError;
+  /// 食材類別, 頂層會null
+  ///  e.g: 配料
+  String? get category => throw _privateConstructorUsedError; // 食材
   List<Ingredient>? get ingredients => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -373,8 +422,11 @@ class _$_IngredientsGroup implements _IngredientsGroup {
   const _$_IngredientsGroup({this.category, this.ingredients});
 
   @override
+
+  /// 食材類別, 頂層會null
+  ///  e.g: 配料
   final String? category;
-  @override
+  @override // 食材
   final List<Ingredient>? ingredients;
 
   @override
@@ -409,8 +461,11 @@ abstract class _IngredientsGroup implements IngredientsGroup {
       {String? category, List<Ingredient>? ingredients}) = _$_IngredientsGroup;
 
   @override
+
+  /// 食材類別, 頂層會null
+  ///  e.g: 配料
   String? get category;
-  @override
+  @override // 食材
   List<Ingredient>? get ingredients;
   @override
   @JsonKey(ignore: true)
@@ -436,8 +491,16 @@ const $Ingredient = _$IngredientTearOff();
 
 /// @nodoc
 mixin _$Ingredient {
+  /// 食材名
+  /// e.g: 牛肋條
   String? get name => throw _privateConstructorUsedError;
+
+  /// 食材用量
+  /// e.g: 一條
   String? get unit => throw _privateConstructorUsedError;
+
+  /// 食材search path
+  /// e.g: /search/%E9%A3%9F%E6%9D%90%EF%BC%9A%E7%89%9B%E8%82%8B%E6%A2%9D/
   String? get href => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -532,10 +595,19 @@ class _$_Ingredient implements _Ingredient {
   const _$_Ingredient({this.name, this.unit, this.href});
 
   @override
+
+  /// 食材名
+  /// e.g: 牛肋條
   final String? name;
   @override
+
+  /// 食材用量
+  /// e.g: 一條
   final String? unit;
   @override
+
+  /// 食材search path
+  /// e.g: /search/%E9%A3%9F%E6%9D%90%EF%BC%9A%E7%89%9B%E8%82%8B%E6%A2%9D/
   final String? href;
 
   @override
@@ -571,10 +643,19 @@ abstract class _Ingredient implements Ingredient {
       _$_Ingredient;
 
   @override
+
+  /// 食材名
+  /// e.g: 牛肋條
   String? get name;
   @override
+
+  /// 食材用量
+  /// e.g: 一條
   String? get unit;
   @override
+
+  /// 食材search path
+  /// e.g: /search/%E9%A3%9F%E6%9D%90%EF%BC%9A%E7%89%9B%E8%82%8B%E6%A2%9D/
   String? get href;
   @override
   @JsonKey(ignore: true)
@@ -601,8 +682,13 @@ const $ProcessStep = _$ProcessStepTearOff();
 
 /// @nodoc
 mixin _$ProcessStep {
+  /// 步驟排序, 由0開始
   int get index => throw _privateConstructorUsedError;
+
+  /// 步驟描述
   String? get description => throw _privateConstructorUsedError;
+
+  /// 圖片連結
   String? get imageUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -698,10 +784,16 @@ class _$_ProcessStep implements _ProcessStep {
   const _$_ProcessStep({required this.index, this.description, this.imageUrl});
 
   @override
+
+  /// 步驟排序, 由0開始
   final int index;
   @override
+
+  /// 步驟描述
   final String? description;
   @override
+
+  /// 圖片連結
   final String? imageUrl;
 
   @override
@@ -740,10 +832,16 @@ abstract class _ProcessStep implements ProcessStep {
       String? imageUrl}) = _$_ProcessStep;
 
   @override
+
+  /// 步驟排序, 由0開始
   int get index;
   @override
+
+  /// 步驟描述
   String? get description;
   @override
+
+  /// 圖片連結
   String? get imageUrl;
   @override
   @JsonKey(ignore: true)
