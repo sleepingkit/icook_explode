@@ -36,7 +36,7 @@ void main() {
       final icookExplode = IcookExplode();
       var response = await icookExplode.search(
         httpClient: mockClient,
-        searchKey: searchKey,
+        recipeName: searchKey,
       );
       expect(response.name, searchKey);
     });
@@ -58,7 +58,7 @@ void main() {
       final icookExplode = IcookExplode();
       var response = await icookExplode.search(
         httpClient: mockClient,
-        searchKey: searchKey,
+        recipeName: searchKey,
         page: 2,
       );
       expect(response.name, searchKey);
@@ -81,7 +81,7 @@ void main() {
       final icookExplode = IcookExplode();
       var request = icookExplode.search(
         httpClient: mockClient,
-        searchKey: searchKey,
+        recipeName: searchKey,
       );
       expect(
         request,
@@ -103,7 +103,7 @@ void main() {
       final icookExplode = IcookExplode();
       var request = icookExplode.search(
         httpClient: mockClient,
-        searchKey: searchKey,
+        recipeName: searchKey,
         page: 99,
       );
       expect(
@@ -131,7 +131,7 @@ void main() {
       final icookExplode = IcookExplode();
       var request = icookExplode.search(
         httpClient: mockClient,
-        searchKey: searchKey,
+        recipeName: searchKey,
       );
 
       expect(
@@ -159,7 +159,7 @@ void main() {
       final icookExplode = IcookExplode();
       var request = icookExplode.search(
         httpClient: mockClient,
-        searchKey: searchKey,
+        recipeName: searchKey,
       );
 
       expect(request, throwsA(predicate((e) => e is TimeoutException)));

@@ -50,11 +50,35 @@ void main() {
 
       final icookExplode = IcookExplode();
       var request = icookExplode.getRecipe(
-        // httpClient: mockClient,
+        httpClient: mockClient,
         path: recipePath,
       );
       expect(request,
           throwsA(predicate((e) => e is IcookExplodeNotFindException)));
+    });
+
+    test('[FAILURE CASE] http call received 400', () async {
+      const String recipePath = '/recipes/xxxxx';
+      final mockClient = MockClient();
+
+      when(mockClient.get(
+        Uri.https('icook.tw', recipePath),
+      )).thenAnswer((_) async {
+        return http.Response("", 400);
+      });
+
+      final icookExplode = IcookExplode();
+      var request = icookExplode.getRecipe(
+        httpClient: mockClient,
+        path: recipePath,
+      );
+      expect(
+        request,
+        throwsA(
+          predicate(
+              (e) => e is IcookExplodeRequestErrorException && e.code == 400),
+        ),
+      );
     });
   });
 }

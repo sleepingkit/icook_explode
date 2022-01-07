@@ -10,7 +10,8 @@ void main() {
   group('Parser', () {
     group('Search content HTML', () {
       test('[SUCCESS CASE] Normal HTML', () async {
-        final file = File('test/sample_data/search/search_key_success_sample.html');
+        final file =
+            File('test/sample_data/search/search_key_success_sample.html');
         final fileContent = await file.readAsString();
 
         final parser = IcookExplodeParser();
@@ -25,7 +26,7 @@ void main() {
         expect(
           result.recipes?.first,
           const Recipe(
-            detailUrl: "https://icook.tw/recipes/397794",
+            detailUrl: "/recipes/397794",
             image:
                 "https://imageproxy.icook.network/resize?background=255%2C255%2C255&height=150&nocrop=false&stripmeta=true&type=auto&url=http%3A%2F%2Ftokyo-kitchen.icook.tw.s3.amazonaws.com%2Fuploads%2Frecipe%2Fcover%2F397794%2F72545b5990736c25.jpg&width=200",
             name: "羅宋湯",
@@ -49,18 +50,18 @@ void main() {
       });
 
       test('[FAILURE CASE] Empty recipe', () async {
-        final file = File('test/sample_data/search/search_key_not_found_sample.html');
+        final file =
+            File('test/sample_data/search/search_key_not_found_sample.html');
         final fileContent = await file.readAsString();
 
         final parser = IcookExplodeParser();
 
         expect(
-              () => parser.searchContentParser(fileContent),
+          () => parser.searchContentParser(fileContent),
           throwsA(isA<IcookExplodeNotFindException>()),
         );
       });
     });
-
 
     group('Detail content HTML', () {
       test('[SUCCESS CASE] Normal HTML', () async {
@@ -74,7 +75,7 @@ void main() {
         expect(result.description, "牛肉羅宋湯，一鍋到底的不正宗口味，哈哈！沒買到月桂葉，但是味道也是很美味。");
         expect(result.servings, "3人份");
         expect(result.time, "45分鐘");
-        expect(result.ingredientsGroups?.length, 2);
+        expect(result.ingredientsGroups?.length, 3);
         expect(result.ingredientsGroups?.last.category, "調味");
         expect(result.ingredientsGroups?.last.ingredients?.length, 5);
         expect(result.ingredientsGroups?.last.ingredients?.first.name, "鹽巴");
@@ -89,9 +90,7 @@ void main() {
       test('[FAILURE CASE] Invalid HTML', () async {
         final file = File('test/sample_data/detail/invalid_sample.html');
         final fileContent = await file.readAsString();
-
         final parser = IcookExplodeParser();
-
         expect(
           () => parser.detailContentParser(fileContent),
           throwsA(isA<IcookExplodeInvalidContentException>()),

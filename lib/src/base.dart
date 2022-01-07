@@ -10,13 +10,15 @@ import 'parser/exception.dart';
 class IcookExplode {
   Future<RecipesModel> search({
     http.Client? httpClient,
-    required String searchKey,
+
+    /// 食譜名
+    required String recipeName,
     int? page,
   }) async {
     httpClient = httpClient ?? http.Client();
     var url = Uri.https(
       'icook.tw',
-      '/search/$searchKey',
+      '/search/$recipeName',
       page == null ? null : {"page": page.toString()},
     );
     http.Response response = await httpClient.get(url);
