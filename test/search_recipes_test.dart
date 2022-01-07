@@ -17,7 +17,7 @@ import 'search_recipes_test.mocks.dart';
 @GenerateMocks([http.Client])
 void main() {
   group('Search Recipes', () {
-    test('search without pagination successfully', () async {
+    test('[SUCCESS CASE] Search without pagination', () async {
       const String searchKey = '羅宋湯';
       final mockClient = MockClient();
 
@@ -41,7 +41,7 @@ void main() {
       expect(response.name, searchKey);
     });
 
-    test('search with pagination successfully', () async {
+    test('[SUCCESS CASE] Search with pagination', () async {
       const String searchKey = '羅宋湯';
       final mockClient = MockClient();
 
@@ -64,7 +64,7 @@ void main() {
       expect(response.name, searchKey);
     });
 
-    test('search key not find', () async {
+    test('[FAILURE CASE] Search key not find', () async {
       const String searchKey = 'jshfjashfjhfdasjlhfas';
       final mockClient = MockClient();
 
@@ -89,7 +89,8 @@ void main() {
       );
     });
 
-    test('search with pagination overflow received 404', () async {
+    test('[FAILURE CASE] Search with pagination overflow received 404',
+        () async {
       const String searchKey = '羅宋湯';
       final mockClient = MockClient();
 
@@ -117,7 +118,7 @@ void main() {
       );
     });
 
-    test('http call received 400', () async {
+    test('[FAILURE CASE] http call received 400', () async {
       const String searchKey = '羅宋湯';
       final mockClient = MockClient();
 
@@ -145,7 +146,7 @@ void main() {
       );
     });
 
-    test('http call timeout exception', () async {
+    test('[FAILURE CASE] http call timeout exception', () async {
       const String searchKey = '羅宋湯';
       final mockClient = MockClient();
 
