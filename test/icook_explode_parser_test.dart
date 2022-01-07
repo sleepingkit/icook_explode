@@ -36,7 +36,7 @@ void main() {
         );
       });
 
-      test('[Failure case] Invalid HTML', () async {
+      test('[FAILURE CASE] Invalid HTML', () async {
         final file = File('test/sample_data/search/invalid_sample.html');
         final fileContent = await file.readAsString();
 
@@ -47,11 +47,24 @@ void main() {
           throwsA(isA<IcookExplodeInvalidContentException>()),
         );
       });
+
+      test('[FAILURE CASE] Empty recipe', () async {
+        final file = File('test/sample_data/search/search_key_not_found_sample.html');
+        final fileContent = await file.readAsString();
+
+        final parser = IcookExplodeParser();
+
+        expect(
+              () => parser.searchContentParser(fileContent),
+          throwsA(isA<IcookExplodeNotFindException>()),
+        );
+      });
     });
+
 
     group('Detail content HTML', () {
       test('[SUCCESS CASE] Normal HTML', () async {
-        final file = File('test/sample_data/detail/search_key_success_sample.html');
+        final file = File('test/sample_data/detail/success_sample.html');
         final fileContent = await file.readAsString();
 
         final parser = IcookExplodeParser();
@@ -73,7 +86,7 @@ void main() {
             "加入適量的水至8分滿，放入2顆雞湯塊（也可以可以直接買雞高湯罐回來加）再把牛肉放回一同煮，小火慢煮20分鐘即可起鍋，喜歡味道重一點的起鍋前也可以再加入一些義式香料。");
       });
 
-      test('[Failure case] Invalid HTML', () async {
+      test('[FAILURE CASE] Invalid HTML', () async {
         final file = File('test/sample_data/detail/invalid_sample.html');
         final fileContent = await file.readAsString();
 
