@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-RecipesModel _$RecipesModelFromJson(Map<String, dynamic> json) {
-  return _RecipesModel.fromJson(json);
-}
-
 /// @nodoc
 class _$RecipesModelTearOff {
   const _$RecipesModelTearOff();
@@ -36,10 +32,6 @@ class _$RecipesModelTearOff {
       recipes: recipes,
     );
   }
-
-  RecipesModel fromJson(Map<String, Object?> json) {
-    return RecipesModel.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -53,7 +45,6 @@ mixin _$RecipesModel {
   List<String>? get suggestions => throw _privateConstructorUsedError;
   List<Recipe>? get recipes => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RecipesModelCopyWith<RecipesModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -172,7 +163,7 @@ class __$RecipesModelCopyWithImpl<$Res> extends _$RecipesModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_RecipesModel implements _RecipesModel {
   const _$_RecipesModel(
       {this.name,
@@ -180,9 +171,6 @@ class _$_RecipesModel implements _RecipesModel {
       this.recipesTotalCount,
       this.suggestions,
       this.recipes});
-
-  factory _$_RecipesModel.fromJson(Map<String, dynamic> json) =>
-      _$$_RecipesModelFromJson(json);
 
   @override
   final String? name;
@@ -228,11 +216,6 @@ class _$_RecipesModel implements _RecipesModel {
   @override
   _$RecipesModelCopyWith<_RecipesModel> get copyWith =>
       __$RecipesModelCopyWithImpl<_RecipesModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_RecipesModelToJson(this);
-  }
 }
 
 abstract class _RecipesModel implements RecipesModel {
@@ -242,9 +225,6 @@ abstract class _RecipesModel implements RecipesModel {
       String? recipesTotalCount,
       List<String>? suggestions,
       List<Recipe>? recipes}) = _$_RecipesModel;
-
-  factory _RecipesModel.fromJson(Map<String, dynamic> json) =
-      _$_RecipesModel.fromJson;
 
   @override
   String? get name;
@@ -260,10 +240,6 @@ abstract class _RecipesModel implements RecipesModel {
   @JsonKey(ignore: true)
   _$RecipesModelCopyWith<_RecipesModel> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-Recipe _$RecipeFromJson(Map<String, dynamic> json) {
-  return _Recipe.fromJson(json);
 }
 
 /// @nodoc
@@ -286,10 +262,6 @@ class _$RecipeTearOff {
       cookingTime: cookingTime,
     );
   }
-
-  Recipe fromJson(Map<String, Object?> json) {
-    return Recipe.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -304,7 +276,6 @@ mixin _$Recipe {
   String? get ingredient => throw _privateConstructorUsedError;
   String? get cookingTime => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RecipeCopyWith<Recipe> get copyWith => throw _privateConstructorUsedError;
 }
@@ -430,7 +401,7 @@ class __$RecipeCopyWithImpl<$Res> extends _$RecipeCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_Recipe implements _Recipe {
   const _$_Recipe(
       {this.detailUrl,
@@ -439,9 +410,6 @@ class _$_Recipe implements _Recipe {
       this.description,
       this.ingredient,
       this.cookingTime});
-
-  factory _$_Recipe.fromJson(Map<String, dynamic> json) =>
-      _$$_RecipeFromJson(json);
 
   @override
   final String? detailUrl;
@@ -491,11 +459,6 @@ class _$_Recipe implements _Recipe {
   @override
   _$RecipeCopyWith<_Recipe> get copyWith =>
       __$RecipeCopyWithImpl<_Recipe>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_RecipeToJson(this);
-  }
 }
 
 abstract class _Recipe implements Recipe {
@@ -506,8 +469,6 @@ abstract class _Recipe implements Recipe {
       String? description,
       String? ingredient,
       String? cookingTime}) = _$_Recipe;
-
-  factory _Recipe.fromJson(Map<String, dynamic> json) = _$_Recipe.fromJson;
 
   @override
   String? get detailUrl;

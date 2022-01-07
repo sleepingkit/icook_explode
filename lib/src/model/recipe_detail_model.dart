@@ -2,19 +2,9 @@
 //
 //     final recipeDetailModel = recipeDetailModelFromJson(jsonString);
 
-import 'dart:convert';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'recipe_detail_model.freezed.dart';
-
-part 'recipe_detail_model.g.dart';
-
-RecipeDetailModel recipeDetailModelFromJson(String str) =>
-    RecipeDetailModel.fromJson(json.decode(str));
-
-String recipeDetailModelToJson(RecipeDetailModel data) =>
-    json.encode(data.toJson());
 
 @freezed
 class RecipeDetailModel with _$RecipeDetailModel {
@@ -26,9 +16,6 @@ class RecipeDetailModel with _$RecipeDetailModel {
     List<IngredientsGroup>? ingredientsGroups,
     List<ProcessStep>? processSteps,
   }) = _RecipeDetailModel;
-
-  factory RecipeDetailModel.fromJson(Map<String, dynamic> json) =>
-      _$RecipeDetailModelFromJson(json);
 }
 
 @freezed
@@ -37,9 +24,6 @@ class IngredientsGroup with _$IngredientsGroup {
     String? category,
     List<Ingredient>? ingredients,
   }) = _IngredientsGroup;
-
-  factory IngredientsGroup.fromJson(Map<String, dynamic> json) =>
-      _$IngredientsGroupFromJson(json);
 }
 
 @freezed
@@ -49,9 +33,6 @@ class Ingredient with _$Ingredient {
     String? unit,
     String? href,
   }) = _Ingredient;
-
-  factory Ingredient.fromJson(Map<String, dynamic> json) =>
-      _$IngredientFromJson(json);
 }
 
 @freezed
@@ -61,7 +42,4 @@ class ProcessStep with _$ProcessStep {
     String? description,
     String? imageUrl,
   }) = _ProcessStep;
-
-  factory ProcessStep.fromJson(Map<String, dynamic> json) =>
-      _$ProcessStepFromJson(json);
 }

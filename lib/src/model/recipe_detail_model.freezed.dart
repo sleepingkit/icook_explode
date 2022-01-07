@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-RecipeDetailModel _$RecipeDetailModelFromJson(Map<String, dynamic> json) {
-  return _RecipeDetailModel.fromJson(json);
-}
-
 /// @nodoc
 class _$RecipeDetailModelTearOff {
   const _$RecipeDetailModelTearOff();
@@ -38,10 +34,6 @@ class _$RecipeDetailModelTearOff {
       processSteps: processSteps,
     );
   }
-
-  RecipeDetailModel fromJson(Map<String, Object?> json) {
-    return RecipeDetailModel.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -57,7 +49,6 @@ mixin _$RecipeDetailModel {
       throw _privateConstructorUsedError;
   List<ProcessStep>? get processSteps => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RecipeDetailModelCopyWith<RecipeDetailModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -190,7 +181,7 @@ class __$RecipeDetailModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_RecipeDetailModel implements _RecipeDetailModel {
   const _$_RecipeDetailModel(
       {this.name,
@@ -199,9 +190,6 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
       this.time,
       this.ingredientsGroups,
       this.processSteps});
-
-  factory _$_RecipeDetailModel.fromJson(Map<String, dynamic> json) =>
-      _$$_RecipeDetailModelFromJson(json);
 
   @override
   final String? name;
@@ -251,11 +239,6 @@ class _$_RecipeDetailModel implements _RecipeDetailModel {
   @override
   _$RecipeDetailModelCopyWith<_RecipeDetailModel> get copyWith =>
       __$RecipeDetailModelCopyWithImpl<_RecipeDetailModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_RecipeDetailModelToJson(this);
-  }
 }
 
 abstract class _RecipeDetailModel implements RecipeDetailModel {
@@ -266,9 +249,6 @@ abstract class _RecipeDetailModel implements RecipeDetailModel {
       String? time,
       List<IngredientsGroup>? ingredientsGroups,
       List<ProcessStep>? processSteps}) = _$_RecipeDetailModel;
-
-  factory _RecipeDetailModel.fromJson(Map<String, dynamic> json) =
-      _$_RecipeDetailModel.fromJson;
 
   @override
   String? get name;
@@ -288,10 +268,6 @@ abstract class _RecipeDetailModel implements RecipeDetailModel {
       throw _privateConstructorUsedError;
 }
 
-IngredientsGroup _$IngredientsGroupFromJson(Map<String, dynamic> json) {
-  return _IngredientsGroup.fromJson(json);
-}
-
 /// @nodoc
 class _$IngredientsGroupTearOff {
   const _$IngredientsGroupTearOff();
@@ -301,10 +277,6 @@ class _$IngredientsGroupTearOff {
       category: category,
       ingredients: ingredients,
     );
-  }
-
-  IngredientsGroup fromJson(Map<String, Object?> json) {
-    return IngredientsGroup.fromJson(json);
   }
 }
 
@@ -316,7 +288,6 @@ mixin _$IngredientsGroup {
   String? get category => throw _privateConstructorUsedError;
   List<Ingredient>? get ingredients => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $IngredientsGroupCopyWith<IngredientsGroup> get copyWith =>
       throw _privateConstructorUsedError;
@@ -397,12 +368,9 @@ class __$IngredientsGroupCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_IngredientsGroup implements _IngredientsGroup {
   const _$_IngredientsGroup({this.category, this.ingredients});
-
-  factory _$_IngredientsGroup.fromJson(Map<String, dynamic> json) =>
-      _$$_IngredientsGroupFromJson(json);
 
   @override
   final String? category;
@@ -434,19 +402,11 @@ class _$_IngredientsGroup implements _IngredientsGroup {
   @override
   _$IngredientsGroupCopyWith<_IngredientsGroup> get copyWith =>
       __$IngredientsGroupCopyWithImpl<_IngredientsGroup>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_IngredientsGroupToJson(this);
-  }
 }
 
 abstract class _IngredientsGroup implements IngredientsGroup {
   const factory _IngredientsGroup(
       {String? category, List<Ingredient>? ingredients}) = _$_IngredientsGroup;
-
-  factory _IngredientsGroup.fromJson(Map<String, dynamic> json) =
-      _$_IngredientsGroup.fromJson;
 
   @override
   String? get category;
@@ -456,10 +416,6 @@ abstract class _IngredientsGroup implements IngredientsGroup {
   @JsonKey(ignore: true)
   _$IngredientsGroupCopyWith<_IngredientsGroup> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-Ingredient _$IngredientFromJson(Map<String, dynamic> json) {
-  return _Ingredient.fromJson(json);
 }
 
 /// @nodoc
@@ -473,10 +429,6 @@ class _$IngredientTearOff {
       href: href,
     );
   }
-
-  Ingredient fromJson(Map<String, Object?> json) {
-    return Ingredient.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -488,7 +440,6 @@ mixin _$Ingredient {
   String? get unit => throw _privateConstructorUsedError;
   String? get href => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $IngredientCopyWith<Ingredient> get copyWith =>
       throw _privateConstructorUsedError;
@@ -576,12 +527,9 @@ class __$IngredientCopyWithImpl<$Res> extends _$IngredientCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_Ingredient implements _Ingredient {
   const _$_Ingredient({this.name, this.unit, this.href});
-
-  factory _$_Ingredient.fromJson(Map<String, dynamic> json) =>
-      _$$_IngredientFromJson(json);
 
   @override
   final String? name;
@@ -616,19 +564,11 @@ class _$_Ingredient implements _Ingredient {
   @override
   _$IngredientCopyWith<_Ingredient> get copyWith =>
       __$IngredientCopyWithImpl<_Ingredient>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_IngredientToJson(this);
-  }
 }
 
 abstract class _Ingredient implements Ingredient {
   const factory _Ingredient({String? name, String? unit, String? href}) =
       _$_Ingredient;
-
-  factory _Ingredient.fromJson(Map<String, dynamic> json) =
-      _$_Ingredient.fromJson;
 
   @override
   String? get name;
@@ -640,10 +580,6 @@ abstract class _Ingredient implements Ingredient {
   @JsonKey(ignore: true)
   _$IngredientCopyWith<_Ingredient> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-ProcessStep _$ProcessStepFromJson(Map<String, dynamic> json) {
-  return _ProcessStep.fromJson(json);
 }
 
 /// @nodoc
@@ -658,10 +594,6 @@ class _$ProcessStepTearOff {
       imageUrl: imageUrl,
     );
   }
-
-  ProcessStep fromJson(Map<String, Object?> json) {
-    return ProcessStep.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -673,7 +605,6 @@ mixin _$ProcessStep {
   String? get description => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ProcessStepCopyWith<ProcessStep> get copyWith =>
       throw _privateConstructorUsedError;
@@ -762,12 +693,9 @@ class __$ProcessStepCopyWithImpl<$Res> extends _$ProcessStepCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_ProcessStep implements _ProcessStep {
   const _$_ProcessStep({required this.index, this.description, this.imageUrl});
-
-  factory _$_ProcessStep.fromJson(Map<String, dynamic> json) =>
-      _$$_ProcessStepFromJson(json);
 
   @override
   final int index;
@@ -803,11 +731,6 @@ class _$_ProcessStep implements _ProcessStep {
   @override
   _$ProcessStepCopyWith<_ProcessStep> get copyWith =>
       __$ProcessStepCopyWithImpl<_ProcessStep>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ProcessStepToJson(this);
-  }
 }
 
 abstract class _ProcessStep implements ProcessStep {
@@ -815,9 +738,6 @@ abstract class _ProcessStep implements ProcessStep {
       {required int index,
       String? description,
       String? imageUrl}) = _$_ProcessStep;
-
-  factory _ProcessStep.fromJson(Map<String, dynamic> json) =
-      _$_ProcessStep.fromJson;
 
   @override
   int get index;
