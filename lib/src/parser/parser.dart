@@ -11,6 +11,11 @@ class IcookExplodeParser {
   RecipesModel searchContentParser(String rawHtml) {
     HtmlDocument document = parseHtmlDocument(rawHtml);
 
+    // 如果有 #search-placeholder, 等於找不到相關食譜
+    if (document.getElementsByClassName("search-placeholder").isNotEmpty) {
+      throw IcookExplodeNotFindException(rawHtml: rawHtml);
+    }
+
     /// 驗證，如果無result-browse-layout, 當係invalid
     final List<Node> verifyNode =
         document.getElementsByClassName("result-browse-layout");

@@ -24,10 +24,11 @@ void main() {
       // Use Mockito to return a successful response when it calls the
       // provided http.Client.
       when(mockClient.get(
-        Uri.https('icook.tw', '/search/$searchKey', {"page": "1"}),
+        Uri.https('icook.tw', '/search/$searchKey'),
       )).thenAnswer((_) async {
         // success_sample 是羅宋湯
-        final file = File('test/sample_data/search/search_key_success_sample.html');
+        final file =
+            File('test/sample_data/search/search_key_success_sample.html');
         final Uint8List fileContent = await file.readAsBytes();
         return http.Response.bytes(fileContent, 200);
       });
@@ -44,14 +45,12 @@ void main() {
       const String searchKey = '羅宋湯';
       final mockClient = MockClient();
 
-      // Use Mockito to return a successful response when it calls the
-      // provided http.Client.
       when(mockClient.get(
         Uri.https('icook.tw', '/search/$searchKey', {"page": "2"}),
       )).thenAnswer((_) async {
         // success_sample 是羅宋湯
-        final file =
-            File('test/sample_data/search/search_key_with_pagination_success_sample.html');
+        final file = File(
+            'test/sample_data/search/search_key_with_pagination_success_sample.html');
         final Uint8List fileContent = await file.readAsBytes();
         return http.Response.bytes(fileContent, 200);
       });
@@ -67,6 +66,27 @@ void main() {
 
     test('search key not find', () async {
       const String searchKey = 'jshfjashfjhfdasjlhfas';
+      final mockClient = MockClient();
+
+      when(mockClient.get(
+        Uri.https('icook.tw', '/search/$searchKey'),
+      )).thenAnswer((_) async {
+        // success_sample 是羅宋湯
+        final file =
+            File('test/sample_data/search/search_key_not_found_sample.html');
+        final Uint8List fileContent = await file.readAsBytes();
+        return http.Response.bytes(fileContent, 200);
+      });
+
+      final icookExplode = IcookExplode();
+      var request = icookExplode.search(
+        httpClient: mockClient,
+        searchKey: searchKey,
+      );
+      expect(
+        request,
+        throwsA(predicate((e) => e is IcookExplodeNotFindException)),
+      );
     });
 
     test('search with pagination overflow received 404', () async {
@@ -102,7 +122,7 @@ void main() {
       final mockClient = MockClient();
 
       when(mockClient.get(
-        Uri.https('icook.tw', '/search/$searchKey', {"page": "1"}),
+        Uri.https('icook.tw', '/search/$searchKey'),
       )).thenAnswer((_) async {
         return http.Response("", 400);
       });
@@ -130,7 +150,7 @@ void main() {
       final mockClient = MockClient();
 
       when(mockClient.get(
-        Uri.https('icook.tw', '/search/$searchKey', {"page": "1"}),
+        Uri.https('icook.tw', '/search/$searchKey'),
       )).thenAnswer((_) async {
         throw TimeoutException("Timeout test");
       });
@@ -141,16 +161,7 @@ void main() {
         searchKey: searchKey,
       );
 
-      expect(
-        request,
-        throwsA(
-          predicate(
-            (e) {
-              return e is TimeoutException;
-            },
-          ),
-        ),
-      );
+      expect(request, throwsA(predicate((e) => e is TimeoutException)));
     });
   });
 }

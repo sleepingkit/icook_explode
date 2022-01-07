@@ -2,6 +2,12 @@ import 'package:http/http.dart';
 
 class IcookExplodeException implements Exception {}
 
+class IcookExplodeNotFindException implements Exception {
+  final String rawHtml;
+
+  IcookExplodeNotFindException({required this.rawHtml});
+}
+
 class IcookExplodeInvalidContentException implements Exception {
   final String rawHtml;
 
