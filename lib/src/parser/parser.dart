@@ -41,7 +41,7 @@ class IcookExplodeParser {
         : recipesTotalCountNode.first.text?.removeNewLinesAndWhitespaces();
 
     /// 食譜簡介
-    /// e.g: description
+    /// e.g: 正宗羅宋湯紫紅的色澤是來自於甜菜根！
     final List<Node> descriptionElement = document
         .getElementsByClassName("styles-module__searchKeywordContent___hdMIz");
     String? description = descriptionElement.isEmpty
@@ -117,7 +117,7 @@ class IcookExplodeParser {
       }
 
       return Recipe(
-        detailUrl: detailPath == null ? null : "https://icook.tw" + detailPath,
+        detailUrl: detailPath,
         image: imgUrl,
         name: name,
         description: description,
@@ -178,16 +178,10 @@ class IcookExplodeParser {
         ?.removeNewLinesAndWhitespaces();
 
     /// 食材, https://icook.tw/recipes/397794
-    /// universal_html not support "div:not(:first-child)"
     List<Element> ingredientsGroupsElement = document
         .querySelectorAll(
             "div.recipe-details > div.recipe-details-ingredients.recipe-details-block > div > div")
         .toList();
-
-    // Remove first element, because it is placeholder
-    if (ingredientsGroupsElement.isNotEmpty) {
-      ingredientsGroupsElement.removeAt(0);
-    }
 
     List<IngredientsGroup> ingredientsGroup =
         ingredientsGroupsElement.map((ingredientsGroupElement) {
@@ -227,11 +221,10 @@ class IcookExplodeParser {
             ?.removeNewLinesAndWhitespaces();
 
         return Ingredient(
-            name: ingredientName,
-            href: ingredientHrefPath == null
-                ? null
-                : "https://icook.tw" + ingredientHrefPath,
-            unit: ingredientUnit);
+          name: ingredientName,
+          href: ingredientHrefPath,
+          unit: ingredientUnit,
+        );
       }).toList();
 
       return IngredientsGroup(
