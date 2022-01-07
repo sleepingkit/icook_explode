@@ -69,31 +69,32 @@ void main() {
       );
     });
 
-    // test('http call timeout exception', () async {
-    //   const String searchKey = '羅宋湯';
-    //   final mockClient = MockClient();
-    //
-    //   when(mockClient.get(Uri.parse('https://icook.tw/search/' + searchKey)))
-    //       .thenAnswer((_) async {
-    //     throw TimeoutException("Timeout test");
-    //   });
-    //
-    //   final icookExplode = IcookExplode();
-    //   var request = icookExplode.search(
-    //     httpClient: mockClient,
-    //     searchKey: searchKey,
-    //   );
-    //
-    //   expect(
-    //     request,
-    //     throwsA(
-    //       predicate(
-    //         (e) {
-    //           return e is TimeoutException;
-    //         },
-    //       ),
-    //     ),
-    //   );
-    // });
+    test('http call timeout exception', () async {
+      const String searchKey = '羅宋湯';
+      final mockClient = MockClient();
+
+      when(mockClient.get(
+        Uri.https('icook.tw', '/search/$searchKey', {"page": "1"}),
+      )).thenAnswer((_) async {
+        throw TimeoutException("Timeout test");
+      });
+
+      final icookExplode = IcookExplode();
+      var request = icookExplode.search(
+        httpClient: mockClient,
+        searchKey: searchKey,
+      );
+
+      expect(
+        request,
+        throwsA(
+          predicate(
+            (e) {
+              return e is TimeoutException;
+            },
+          ),
+        ),
+      );
+    });
   });
 }
