@@ -16,10 +16,15 @@ import 'recipe_detail_test.mocks.dart';
 // Create new instances of this class in each test.
 @GenerateMocks([http.Client])
 void main() {
+  late MockClient mockClient;
+
+  setUp(() {
+    mockClient = MockClient();
+  });
+
   group('Recipe detail', () {
     test('[SUCCESS CASE] Normal HTML', () async {
       const String recipePath = '/recipes/397794';
-      final mockClient = MockClient();
 
       when(mockClient.get(
         Uri.https('icook.tw', recipePath),
@@ -40,7 +45,6 @@ void main() {
 
     test('[FAILURE CASE] Not Found', () async {
       const String recipePath = '/recipes/xxxxx';
-      final mockClient = MockClient();
 
       when(mockClient.get(
         Uri.https('icook.tw', recipePath),
@@ -59,7 +63,6 @@ void main() {
 
     test('[FAILURE CASE] http call received 400', () async {
       const String recipePath = '/recipes/xxxxx';
-      final mockClient = MockClient();
 
       when(mockClient.get(
         Uri.https('icook.tw', recipePath),

@@ -16,10 +16,14 @@ import 'search_recipes_test.mocks.dart';
 // Create new instances of this class in each test.
 @GenerateMocks([http.Client])
 void main() {
+  late MockClient mockClient;
+
+  setUp(() {
+    mockClient = MockClient();
+  });
   group('Search Recipes', () {
     test('[SUCCESS CASE] Search without pagination', () async {
       const String searchKey = '羅宋湯';
-      final mockClient = MockClient();
 
       // Use Mockito to return a successful response when it calls the
       // provided http.Client.
@@ -43,7 +47,6 @@ void main() {
 
     test('[SUCCESS CASE] Search with pagination', () async {
       const String searchKey = '羅宋湯';
-      final mockClient = MockClient();
 
       when(mockClient.get(
         Uri.https('icook.tw', '/search/$searchKey', {"page": "2"}),
@@ -66,7 +69,6 @@ void main() {
 
     test('[FAILURE CASE] Search key not find', () async {
       const String searchKey = 'jshfjashfjhfdasjlhfas';
-      final mockClient = MockClient();
 
       when(mockClient.get(
         Uri.https('icook.tw', '/search/$searchKey'),
@@ -92,7 +94,6 @@ void main() {
     test('[FAILURE CASE] Search with pagination overflow received 404',
         () async {
       const String searchKey = '羅宋湯';
-      final mockClient = MockClient();
 
       when(mockClient.get(
         Uri.https('icook.tw', '/search/$searchKey', {"page": "99"}),
@@ -120,7 +121,6 @@ void main() {
 
     test('[FAILURE CASE] http call received 400', () async {
       const String searchKey = '羅宋湯';
-      final mockClient = MockClient();
 
       when(mockClient.get(
         Uri.https('icook.tw', '/search/$searchKey'),
@@ -148,7 +148,6 @@ void main() {
 
     test('[FAILURE CASE] http call timeout exception', () async {
       const String searchKey = '羅宋湯';
-      final mockClient = MockClient();
 
       when(mockClient.get(
         Uri.https('icook.tw', '/search/$searchKey'),
