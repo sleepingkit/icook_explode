@@ -56,8 +56,8 @@ class IcookExplodeParser {
     ///         "牛肉湯",
     ///         "番茄湯"
     ///     ]
-    final ElementList<Element> suggestionsElement = document.querySelectorAll(
-        "#o-wrapper > div:nth-child(6) > div.row.row--flex > main > header > section:nth-child(5) > ul > li > a");
+    final ElementList<Element> suggestionsElement = document
+        .querySelectorAll("ul.filters-recipes > li.filters-recipe > a > span");
     final List<String>? suggestions = suggestionsElement
         .map((Node e) => e.text?.removeNewLinesAndWhitespaces())
         .toList()
