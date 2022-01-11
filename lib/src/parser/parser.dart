@@ -56,13 +56,25 @@ class IcookExplodeParser {
     ///         "牛肉湯",
     ///         "番茄湯"
     ///     ]
-    final ElementList<Element> suggestionsElement = document
+    /// 見到網站有兩個format, 一時一樣咁, 所以map晒兩個
+
+    final ElementList<Element> suggestionsElement1 = document
         .querySelectorAll("ul.filters-recipes > li.filters-recipe > a > span");
-    final List<String>? suggestions = suggestionsElement
+    List<String>? suggestions = suggestionsElement1
         .map((Node e) => e.text?.removeNewLinesAndWhitespaces())
         .toList()
         .whereType<String>()
         .toList();
+
+    if (suggestions.isEmpty) {
+      final ElementList<Element> suggestionsElement2 = document.querySelectorAll(
+          "#o-wrapper > div:nth-child(6) > div.row.row--flex > main > header > section:nth-child(5) > ul > li > a");
+      suggestions = suggestionsElement2
+          .map((Node e) => e.text?.removeNewLinesAndWhitespaces())
+          .toList()
+          .whereType<String>()
+          .toList();
+    }
 
     /// 食譜
     final List<Node>? recipesNode =
