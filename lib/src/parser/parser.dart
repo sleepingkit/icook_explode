@@ -1,11 +1,9 @@
-import 'package:collection/src/list_extensions.dart';
-import 'package:icook_explode/src/model/recipe_detail_model.dart';
-import 'package:icook_explode/src/model/recipes_model.dart';
+import 'package:collection/src/iterable_extensions.dart';
+import 'package:icook_explode/src/extension/string_ex.dart';
 import 'package:universal_html/html.dart';
 import 'package:universal_html/parsing.dart';
 
-import '../extension/string_ex.dart';
-import 'exception.dart';
+import '/icook_explode.dart';
 
 class IcookExplodeParser {
   RecipesModel searchContentParser(String rawHtml) {

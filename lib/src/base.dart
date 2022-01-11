@@ -2,10 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../icook_explode.dart';
-import 'model/recipe_detail_model.dart';
-import 'model/recipes_model.dart';
-import 'parser/exception.dart';
+import '/icook_explode.dart';
 
 class IcookExplode {
   Future<RecipesModel> search({
